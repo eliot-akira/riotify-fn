@@ -1,6 +1,6 @@
 # riotify-fn
 
-`riotify-fn` is a [browserify]() transform for [Riot.js](http://riotjs.com/), to include `.tag` files as constructor functions.
+`riotify-fn` is a [browserify](http://browserify.org/) transform for [Riot.js](http://riotjs.com/), to include `.tag` files as constructor functions.
 
 It's a way to use `.tag` files as precompiled templates, which leaves the initialization to the consumer.
 
