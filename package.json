@@ -1,0 +1,38 @@
+{
+  "name": "riotify-fn",
+  "version": "0.1.21",
+  "description": "Browserify transform to include riot.js tags as constructor functions",
+  "main": "index.js",
+  "dependencies": {
+    "riot": "^2.3.12",
+    "through": "^2.3.8"
+  },
+  "devDependencies": {
+    "concat-stream": "^1.4.0",
+    "module-deps": "^3.6.0",
+    "tape": "^2.12.1"
+  },
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eliot-akira/riotify-fn.git"
+  },
+  "keywords": [
+    "browserify",
+    "browserify-transform",
+    "module-deps",
+    "riot"
+  ],
+  "author": "Eliot Akira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eliot-akira/riotify-fn/issues"
+  },
+  "basedOn": {
+    "name": "riotify",
+    "author": "Jan Henning Thorsen",
+    "repo": "https://github.com/jhthorsen/riotify"
+  }
+}
