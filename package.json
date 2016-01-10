@@ -1,6 +1,6 @@
 {
   "name": "riotify-fn",
-  "version": "0.1.22",
+  "version": "0.2.0",
   "description": "Browserify transform to include riot.js tags as constructor functions",
   "main": "index.js",
   "dependencies": {
