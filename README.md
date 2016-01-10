@@ -11,7 +11,7 @@ It's a way to use `.tag` files as precompiled templates, which leaves the initia
 
 **How does it work?**
 
-`riotify-fn` compiles `.tag` files with the [*entities* option](https://github.com/riot/compiler/blob/dev/doc/guide.md#compiler-options) (new in Riot v2.3.12), which transforms them to raw tag parts. It returns a constructor function as a thin wrapper to extend and build the tag.
+`riotify-fn` compiles `.tag` files with the [*entities* option](https://github.com/riot/compiler/blob/dev/doc/guide.md#compiler-options) (new in Riot v2.3.12), which transforms them to raw tag parts. It returns a constructor function that extends and builds the tag using [`riot.tag()`](http://riotjs.com/api/#manual-construction). Since the tag is precompiled, all template features like self-consing tags are supported.
 
 
 ## Apply transform
@@ -95,9 +95,9 @@ After the constructor is done, it returns the tag name. This can be used to moun
 riot.mount(makeButton());
 ```
 
-## Idea for future
+## Future idea
 
-- `riotify-class` to include tags as Tag class to be extended
+- Option to export tags as ES6 class
 
 ## Credit
 
