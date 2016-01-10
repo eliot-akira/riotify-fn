@@ -13,6 +13,11 @@ It's a way to use `.tag` files as precompiled templates, which leaves the initia
 
 `riotify-fn` compiles `.tag` files with the [*entities* option](https://github.com/riot/compiler/blob/dev/doc/guide.md#compiler-options) (new in Riot v2.3.12), which transforms them to raw tag parts. It returns a constructor function that extends and builds the tag using [`riot.tag()`](http://riotjs.com/api/#manual-construction). Since the tag is precompiled, all template features like self-closing tags are supported.
 
+## Install
+
+```bash
+$ npm i riotify-fn --save-dev
+```
 
 ## Apply transform
 
