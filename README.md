@@ -35,7 +35,9 @@ $ browserify -t riotify-fn
 ```javascript
 var riotifyFn = require('riotify-fn');
 
-browserify({ transform: [riotifyFn] });
+browserify({
+  transform: [ riotifyFn ]
+});
 ```
 
 ## Include tag
@@ -64,7 +66,7 @@ makeButton();
 
 It takes an optional argument of a *function* or *object* to extend the tag.
 
-Given a *function*, it is run when the tag is instantiated. It comes after the init script in the tag file, if any. `this` is the tag instance.
+Given a *function*, it is run when the tag is instantiated, with `this` being the tag instance. If the tag file has an init script, it will be run first.
 
 ```javascript
 makeButton(function() {
@@ -83,7 +85,7 @@ makeButton({
 });
 ```
 
-Optionally, set `init` as initial function, and `tagName` to give a new tag name.
+Optional: set `init` as initial function, and `tagName` to give a new tag name.
 
 If multiple tags are defined in the `.tag` file, the first tag is extended.
 
