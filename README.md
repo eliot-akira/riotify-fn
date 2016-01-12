@@ -38,14 +38,36 @@ $ browserify -t riotify-fn
 ..or gulp task
 
 ```javascript
-var riotifyFn = require('riotify-fn');
-
 browserify({
-  transform: [ riotifyFn ]
+  transform: [ 'riotify-fn' ]
 });
 ```
 
-## Include tag
+**Transform options**
+
+`ext` - an object mapping file extension (key) to transform mode (value)
+
+Available modes are:
+
+- `fn` returns constructor function (default)
+- `tag` returns constructed tag name (same as riotify)
+- `obj` returns an array of [raw tag entities](https://github.com/riot/compiler/blob/dev/doc/guide.md#the-entities-option)
+
+Default setting is `{ tag: 'fn' }`.
+
+The example below will compile `.tag` files the same as riotify, and export `.riot` files as contructor functions.
+
+```javascript
+browserify({
+  transform: [
+    ['riotify-fn', {
+      ext: { tag: 'tag', riot: 'fn' }
+    }]
+  ]
+});
+```
+
+## Include the tag
 
 Here is an example `.tag` file.
 
@@ -61,23 +83,29 @@ When required, it returns a constructor function.
 var makeButton = require('./my-button.tag');
 ```
 
-## Build
+## Constructor
 
 The constructor will build all tags defined in the file.
+
+Given no argument, it is equivalent to requiring the tag using `riotify`.
 
 ```javascript
 makeButton();
 ```
 
-It takes an optional argument of a *function* or *object* to extend the tag.
+It takes an optional argument of a *function* or *object* to extend the tag. If multiple tags are defined in the `.tag` file, the first tag is extended.
 
-Given a *function*, it is run when the tag is instantiated, with `this` being the tag instance. If the tag file has an init script, it will be run first.
+Given a *function*, it will be used to instantiate the tag **in place of any script in the tag file**.
+
 
 ```javascript
 makeButton(function() {
   this.label = 'Hi';
+  this.super();
 });
 ```
+
+`this` is the tag instance. `this.super` is a function that runs the default script from the tag file, if there were any; otherwise it does nothing.
 
 Given an *object*, its properties are assigned to the tag instance.
 
@@ -90,9 +118,10 @@ makeButton({
 });
 ```
 
-Optional: set `init` as initial function, and `tagName` to give a new tag name.
+Optionally, set:
 
-If multiple tags are defined in the `.tag` file, the first tag is extended.
+- `tagName` to give a new tag name
+- `init` as the initial function. It works the same as the *function* argument above. If `init` is not set, the default script in the tag file is used to instantiate the tag.
 
 ## Result
 
@@ -102,9 +131,9 @@ After the constructor is done, it returns the tag name. This can be used to moun
 riot.mount(makeButton());
 ```
 
-## Future idea
+## Future ideas
 
-- Option to export tags as ES6 class
+- Transform mode: JSX, ES6 classes?
 
 ## Credit
 
